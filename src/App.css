@@ -20,10 +20,11 @@
     padding: 2rem;
     font: 1rem;
     width: 100%;
+  }
+  .instructions{
     display: flex;
     flex-direction: column;
   }
-  
 
   
 }
