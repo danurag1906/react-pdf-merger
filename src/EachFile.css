@@ -21,5 +21,6 @@
     .uploaded-files-list{
         width: inherit;
         height: auto;
+        margin: 0.25rem;
     }
   }

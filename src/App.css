@@ -4,7 +4,16 @@
   overflow-x: scroll;
   background-color: rgb(247, 239, 229);
 }
-
+.instructions{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+  align-items: flex-start;
+}
+.header{
+  background-color: rgb(249, 224, 194);
+}
 
 @media only screen and (max-width:500px){
   .App{

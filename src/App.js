@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PDFMerger from "pdf-merger-js/browser";
 import "./App.css";
+import {FaArrowCircleRight} from 'react-icons/fa'
 
 import EachFile from "./EachFile";
 
@@ -57,11 +58,16 @@ function App() {
 
 
 
-  return (
+  return ( 
+    <>
     <div className="App">
-      <h5 className="my-2" >Only Pdf Files Allowed</h5>
-      <p className="my-2">!! Add those files in the order to be merged !!</p>
-      <p>!! Refresh to clear data !!</p>
+      <div className="header">
+      <h4 className="mb-4 p-2" >PDF-Merger</h4>
+      </div>
+      <div className="instructions">
+        <p><FaArrowCircleRight/> Add the PDF files in the order to be merged</p>
+        <p><FaArrowCircleRight/> Refresh to clear data</p>
+      </div>
       <input
         style={{ display: "none" }}
         id="fileUpload"
@@ -75,7 +81,7 @@ function App() {
           <a className="btn btn-danger my-2"> Upload Files </a>
         </label>
 
-        <a className="btn btn-warning my-2" style={{marginLeft:'1rem'}} href={`${mergedPdfUrl}`} download >Merge Files</a>
+        <a className="btn btn-warning my-2 mx-2"  href={`${mergedPdfUrl}`} download >Merge Files</a>
       </div>
       
 
@@ -90,7 +96,10 @@ function App() {
       )}
 
     </div>
+    </>
   );
 }
+
+
 
 export default App;
