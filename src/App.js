@@ -110,7 +110,7 @@ function App() {
       ):(
         <div className="uploaded-files-list">
         {uploadedFiles.map((file) => (
-          <div className="eachFile" > <MdPictureAsPdf/> {file.name} <div className="arrows"><BsFillArrowUpSquareFill onClick={()=>handleUp(file.name)} /><BsFillArrowDownSquareFill onClick={()=>handleDown(file.name)} /></div> </div>
+          <div className="eachFile" > <MdPictureAsPdf/> {file.name} <div className="arrows"><BsFillArrowUpSquareFill className="mx-2" onClick={()=>handleUp(file.name)} /><BsFillArrowDownSquareFill onClick={()=>handleDown(file.name)} /></div> </div>
         ))}
       </div>
       )}
