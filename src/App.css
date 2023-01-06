@@ -7,6 +7,16 @@
   flex-direction: column;
   margin: auto;
 }
+.instructions{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+  align-items: flex-start;
+}
+.header{
+  background-color: rgb(249, 224, 194);
+}
 
 .eachFile{
   padding: 0.5rem;
