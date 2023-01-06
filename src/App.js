@@ -6,8 +6,7 @@ import {BsFillArrowDownSquareFill,BsFillArrowUpSquareFill} from 'react-icons/bs'
 import {FaArrowCircleRight} from 'react-icons/fa'
 
 function App() {
-  const [uploadedFiles, setUploadedFiles] = useState([
-  ]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [mergedPdfUrl, setMergedPdfUrl] = useState('');
 
 
@@ -30,8 +29,8 @@ function App() {
     const render = async () => {
       const merger = new PDFMerger();
 
-      for (let i=0;i<uploadedFiles.length;i++) {
-        await merger.add(uploadedFiles[i].file);
+      for (const file of uploadedFiles) {
+        await merger.add(file);
       }
 
       const mergedPdf = await merger.saveAsBlob();
@@ -114,13 +113,13 @@ function App() {
       {!mergedPdfUrl?(
         <p className="danger" >Loading...</p>
       ):(
-        <>
+        
         <div className="uploaded-files-list">
         {uploadedFiles.map((file) => (
           <div className="eachFile" > <MdPictureAsPdf/> {file.name} <div className="arrows"><BsFillArrowUpSquareFill className="mx-2" onClick={()=>handleUp(file.name)} /><BsFillArrowDownSquareFill onClick={()=>handleDown(file.name)} /></div> </div>
         ))}
         </div>
-        </>
+        
       )}
 
     </div>
