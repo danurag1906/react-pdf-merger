@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import PDFMerger from "pdf-merger-js/browser";
 import "./App.css";
+import {MdPictureAsPdf} from'react-icons/md'
+import {BsFillArrowDownSquareFill,BsFillArrowUpSquareFill} from 'react-icons/bs'
 import {FaArrowCircleRight} from 'react-icons/fa'
-
-import EachFile from "./EachFile";
 
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([
-    {
-      id:0,
-      file:''
-    }
   ]);
   const [mergedPdfUrl, setMergedPdfUrl] = useState('');
 
@@ -19,11 +15,7 @@ function App() {
     const uploaded = [...uploadedFiles];
     
     files.forEach((file) => {
-      let lastIndex=uploaded[uploaded.length-1].id;
-      uploaded.push({
-        id:lastIndex+1,
-        file:file
-      });
+      uploaded.push(file)
     });
     setUploadedFiles(uploaded);
   };
@@ -33,14 +25,13 @@ function App() {
     handleUploadFiles(chosenFiles);
   };
 
-  let finalFiles=uploadedFiles.filter(file=>file.id!=0)
   
   useEffect(() => {
     const render = async () => {
       const merger = new PDFMerger();
 
-      for (let i=0;i<finalFiles.length;i++) {
-        await merger.add(finalFiles[i].file);
+      for (let i=0;i<uploadedFiles.length;i++) {
+        await merger.add(uploadedFiles[i].file);
       }
 
       const mergedPdf = await merger.saveAsBlob();
@@ -57,6 +48,41 @@ function App() {
   }, [uploadedFiles, setMergedPdfUrl]);
 
 
+  const handleUp=(name)=>{
+    const data=[...uploadedFiles]
+    let index;
+    
+    if(name!=data[0].name){
+      for(let i=0;i<data.length;i++){
+        if(data[i].name==name){
+          index=i;
+          break;
+        }
+      }
+      let temp=data[index];
+      data[index]=data[index-1];
+      data[index-1]=temp;
+      setUploadedFiles(data)
+    }
+  }
+
+  const handleDown=(name)=>{
+    const data=[...uploadedFiles]
+    let index;
+    
+    if(name!=data[data.length-1].name){
+      for(let i=0;i<data.length;i++){
+        if(data[i].name==name){
+          index=i;
+          break;
+        }
+      }
+
+      [data[index],data[index+1]]=[data[index+1],data[index]]
+      setUploadedFiles(data)
+    }
+  }
+  
 
   return ( 
     <>
@@ -89,9 +115,11 @@ function App() {
         <p className="danger" >Loading...</p>
       ):(
         <>
-        {finalFiles.map((file ) => (
-          <EachFile key={file.id} name={file.file.name} />
+        <div className="uploaded-files-list">
+        {uploadedFiles.map((file) => (
+          <div className="eachFile" > <MdPictureAsPdf/> {file.name} <div className="arrows"><BsFillArrowUpSquareFill className="mx-2" onClick={()=>handleUp(file.name)} /><BsFillArrowDownSquareFill onClick={()=>handleDown(file.name)} /></div> </div>
         ))}
+        </div>
         </>
       )}
 

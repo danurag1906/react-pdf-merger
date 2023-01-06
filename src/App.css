@@ -1,8 +1,14 @@
 .App {
   text-align: center;
-  height: 100vh;
-  overflow-x: scroll;
   background-color: rgb(247, 239, 229);
+  height: 100vh;
+}
+.instructions{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+  align-items: flex-start;
 }
 .instructions{
   display: flex;
@@ -15,17 +21,4 @@
   background-color: rgb(249, 224, 194);
 }
 
-@media only screen and (max-width:500px){
-  .App{
-    padding: 2rem;
-    font: 1rem;
-    width: 100%;
-  }
-  .instructions{
-    display: flex;
-    flex-direction: column;
-  }
-
-  
-}
 
