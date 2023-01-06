@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgb(247, 239, 229);
+  height: 100vh;
 }
 .uploaded-files-list{
   width: max-content;
